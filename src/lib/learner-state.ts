@@ -21,7 +21,7 @@ const STORAGE_KEY = "logiclore.learner.v1";
 const defaultState: LearnerState = {
   mastery: { ds: 42, algo: 18, os: 8 },
   xp: 120,
-  activeLessonId: lessons[0].id,
+  activeLessonId: lessons[0]!.id,
   depthOverride: null,
   attempts: [],
   completed: [],
@@ -98,14 +98,14 @@ export function useLearnerState() {
 }
 
 export function weakestTopic(mastery: Record<string, number>) {
-  return [...topics].sort((a, b) => (mastery[a.id] ?? 0) - (mastery[b.id] ?? 0))[0];
+  return [...topics].sort((a, b) => (mastery[a.id] ?? 0) - (mastery[b.id] ?? 0))[0]!;
 }
 
 export function recommendedLesson(state: LearnerState) {
   const weak = weakestTopic(state.mastery);
   return lessons.find((l) => l.topicId === weak.id && !state.completed.includes(l.id))
     ?? lessons.find((l) => !state.completed.includes(l.id))
-    ?? lessons[0];
+    ?? lessons[0]!;
 }
 
 export function knowledgeSummary(state: LearnerState) {
