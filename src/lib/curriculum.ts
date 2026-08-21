@@ -195,7 +195,7 @@ export const lessons: Lesson[] = [
 
 export const lessonsByTopic = (topicId: string) => lessons.filter((l) => l.topicId === topicId);
 
-export const getLesson = (id: string) => lessons.find((l) => l.id === id) ?? lessons[0];
+export const getLesson = (id: string) => lessons.find((l) => l.id === id) ?? lessons[0]!;
 
 export const depthForMastery = (mastery: number): Depth =>
   mastery < 35 ? "conceptual" : mastery < 70 ? "technical" : "deep";
